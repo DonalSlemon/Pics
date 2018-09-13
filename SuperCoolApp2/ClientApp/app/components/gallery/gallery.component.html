@@ -1,0 +1,66 @@
+﻿<p *ngIf="!images"><em>Loading...</em></p>
+<h1 style="text-align: center;">{{pagetitle}}</h1>
+<div class="modal fade" id="selectedImageModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="selectedImage" *ngIf="selectedImage">
+                    <img src="data:image/jpeg;base64,{{selectedImage.imageFileContent}}">
+                    <div class="arrow-back" (click)=navigate(false)>
+                        &lt;
+                    </div>
+                    <div class="arrow-forward" (click)=navigate(true)>
+                        &gt;
+                    </div>
+                    <div class="caption">
+                        <p><strong>{{selectedImage.title}}</strong></p>
+                        <p>{{selectedImage.caption}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul id="thumbnailsList" class="thumbnail-list" *ngIf="images; else elseBlock">
+    <li *ngFor="let image of images">
+        <img src="data:image/jpeg;base64,{{image.imageFileContent}}" class="tn"
+             width="191" height="146"
+             data-toggle="modal" data-target="#selectedImageModal"
+             (click)=setSelectedImage(image)>
+    </li>
+</ul>
+<table class='table'>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Caption</th>
+            <!--<th>TheID</th>-->
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="images; else elseBlock">
+        <tr *ngFor="let image of images">
+            <td>
+                <img src="data:image/jpeg;base64,{{image.imageFileContent}}" width="75" height="63" title="{{ image.title }}">
+            </td>
+            <td>{{ image.title }}</td>
+            <td>{{ image.caption }}</td>
+            <!--<td>{{ image.imageId }}</td>-->
+            <td><button (click)="deleteImage(image)" class="btn btn-danger">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #elseBlock>
+    <h3 style="text-align: center;">No Images found in the database</h3>
+</ng-template>
+<!--<image-upload #fileInput type="file" [extensions]="['jpeg','png']" (change)="onFileChange($event)"></image-upload>-->
+<form [formGroup]="uploadForm" method="post" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <input #fileInput type="file" title="Choose Image to upload" style="display:inline;" />
+        <input formControlName="imgtitle" type="text" id="fileTitle" class="form-control" placeholder="Image title..." />
+        <!--
+    <textarea id="fileCaption" rows=3 class="form-control" placeholder="Enter Image caption..."></textarea>-->
+        <button (click)="addFile()" class="btn btn-success">Add</button>
+    </div>
+</form>
