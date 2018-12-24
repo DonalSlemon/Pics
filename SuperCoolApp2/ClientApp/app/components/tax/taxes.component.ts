@@ -53,7 +53,7 @@ export class TaxesComponent implements OnInit {
             monthly: this.monthly,
             annual: this.annual
         })
-        //this.calculateannual = true
+        this.calculateannual = true
     }
     public calcTaxes(formValues: any) {
         this.yourincome = formValues.income
