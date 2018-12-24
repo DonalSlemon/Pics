@@ -16,6 +16,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 //import { ImageUploadComponent } from './components/imageupload/image-upload.component';
 //import { ImageService } from './components/image.service';
 import { UploadFileService } from './components/shared/uploadfile.service';
+import { TaxesComponent } from './components/tax/taxes.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { UploadFileService } from './components/shared/uploadfile.service';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        GalleryComponent
+        GalleryComponent,
+        TaxesComponent
         //ImageUploadComponent,
         //FileDropDirective
     ],
@@ -41,6 +43,7 @@ import { UploadFileService } from './components/shared/uploadfile.service';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'gallery', component: GalleryComponent },
             { path: 'backdrops', component: GalleryComponent },
+            { path: 'taxes', component: TaxesComponent },
             //{ path: 'image-upload', component: ImageUploadComponent },
             { path: '**', redirectTo: 'home' }
         ]),

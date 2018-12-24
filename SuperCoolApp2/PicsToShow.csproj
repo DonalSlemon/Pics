@@ -15,6 +15,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +39,9 @@
     <None Remove="ClientApp\app\components\imageupload\image-upload.component.ts" />
     <None Remove="ClientApp\app\components\shared\images.model.ts" />
     <None Remove="ClientApp\app\components\shared\index.ts" />
+    <None Remove="ClientApp\app\components\shared\taxes.model.ts" />
+    <None Remove="ClientApp\app\components\shared\taxes.service.ts" />
+    <None Remove="ClientApp\app\components\tax\taxes.component.ts" />
     <None Remove="ClientApp\app\components\uploadfile.service.ts" />
   </ItemGroup>
 
@@ -45,7 +52,18 @@
     <TypeScriptCompile Include="ClientApp\app\components\shared\images.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\imageupload\image-upload.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\taxes.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\taxes.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\uploadfile.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\tax\taxes.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WCFServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

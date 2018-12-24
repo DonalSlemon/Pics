@@ -15,6 +15,7 @@ namespace SuperCoolApp2.Models
         }
 
         public DbSet<Image> Images { get; set; }
+        //public DbSet<Tax> Taxes { get; set; }
     }
 
     public class Image
@@ -27,4 +28,14 @@ namespace SuperCoolApp2.Models
 
         public List<Image> ImageList { get; set; }
     }
+
+    //public class Tax
+    //{
+    //    public decimal Earnings { get; set; }
+    //    public decimal RAContribution { get; set; }
+    //    public decimal AgeInYears { get; set; }
+    //    public string TimePeriod { get; set; }
+    //    public int MedicalDependants { get; set; }
+    //    public bool HasMedical { get; set; }
+    //}
 }
