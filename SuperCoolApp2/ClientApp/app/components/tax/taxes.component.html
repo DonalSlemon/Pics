@@ -4,11 +4,11 @@
         <div class="form-group">
             <label>Choose to calculate </label>
             <label>Monthly</label>
-            <input class="radio-inline" title="monthly" formControlName="monthly" ng-model="calculateannual" id="monthly" type="radio" (click)="setmonthlyRadio(true)" [value]="true" [(ngModel)]="calculateannual"/>
+            <input class="radio-inline" title="{{tipmonthly}}" formControlName="monthly" ng-model="calculateannual" id="monthly" type="radio" (click)="setmonthlyRadio(true)" [value]="false" [(ngModel)]="calculateannual"/>
             <label> or annually</label>
-            <input class="radio-inline" title="annually" formControlName="annual" ng-model="calculateannual" id="annual" type="radio" (click)="setmonthlyRadio(false)" [value]="false" [(ngModel)]="calculateannual"/>
+            <input class="radio-inline" title="{{tipannual}}" formControlName="annual" ng-model="calculateannual" id="annual" type="radio" (click)="setmonthlyRadio(false)" [value]="true" [(ngModel)]="calculateannual"/>
         </div>
-        <div class="form-group" *ngIf="taxForm.controls['monthly'].value == true; then contentMonthly else contentAnnual">
+        <div class="form-group" *ngIf="taxForm.controls['monthly'].value == false; then contentMonthly else contentAnnual">
         </div>
         <ng-template #contentMonthly><div><label>Monthly Income</label></div></ng-template>
         <ng-template #contentAnnual><div><label>Annual Income</label></div></ng-template>
@@ -23,31 +23,34 @@
             <label>Enter your age</label>
             <input class="form-control" formControlName="ageinyrs" id="ageinyrs" type="number" placeholder="Just the years..." inputmode="numeric" />
         </div>
-        <div class="form-group">
-            <label>Do you have Medical Aid?</label>
-            <label>Yes</label>
-            <input class="radio-inline" title="Yes" formControlName="havemedical" ng-model="youhavemedical" id="havemedical" type="radio" (click)="setRadio(true)" [value]="true" />
-            <label class="label-default">No</label>
-            <input class="radio-inline" title="No" formControlName="nomedical" ng-model="youhavemedical" id="nomedical" type="radio" (click)="setRadio(false)" [value]="false" />
-        </div>
-        <div class="form-group" *ngIf="taxForm.controls['havemedical'].value == true">
-            <label>Select number of dependants on your medical</label>
-            <select class="form-control" formControlName="dependants">
-                <option value="">select dependants...</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <button type="submit" [disabled]="taxForm.invalid && taxForm.controls['havemedical'].value == false">Calculate</button>
+        <div class="form-group" *ngIf="taxForm.Controls['monthly'].value == true; then medical"></div>
+        <ng-template #medical>
+            <div class="form-group">
+                <label>Do you have Medical Aid?</label>
+                <label>Yes</label>
+                <input class="radio-inline" title="Yes" formControlName="havemedical" ng-model="youhavemedical" id="havemedical" type="radio" (click)="setRadio(true)" [value]="true" />
+                <label>No</label>
+                <input class="radio-inline" title="No" formControlName="nomedical" ng-model="youhavemedical" id="nomedical" type="radio" (click)="setRadio(false)" [value]="false" />
+            </div>
+            <div class="form-group" *ngIf="taxForm.controls['havemedical'].value == true">
+                <label>Select number of dependants on your medical</label>
+                <select class="form-control" formControlName="dependants">
+                    <option value="">select dependants...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </ng-template>
+        <button type="submit" [disabled]="taxForm.invalid && taxForm.controls['havemedical'].true == false">Calculate</button>
         <button type="reset">Reset</button>
     </form>
 </div>
-<table class='table' *ngIf="taxes">
+<table class="table" *ngIf="taxes">
     <thead>
         <tr>
-            <th>Taxable Income</th>
+            <th title="this is the amount on which you will be taxed">Taxable Income</th>
             <th>Tax Payable</th>
             <th>Take Home Pay</th>
             <th>Take Home Less R.A.</th>

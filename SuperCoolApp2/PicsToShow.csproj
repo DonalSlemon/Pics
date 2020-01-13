@@ -59,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="node_modules\" />
     <Folder Include="WCFServices\" />
   </ItemGroup>
 

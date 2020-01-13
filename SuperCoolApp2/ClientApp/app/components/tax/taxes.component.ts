@@ -22,6 +22,8 @@ export class TaxesComponent implements OnInit {
     youhavemedical: boolean
     yourdependants: number
     calculateannual: boolean
+    tipmonthly: string
+    tipannual: string
 
     taxForm: FormGroup
     income: FormControl
@@ -53,7 +55,9 @@ export class TaxesComponent implements OnInit {
             monthly: this.monthly,
             annual: this.annual
         })
-        this.calculateannual = true
+        this.calculateannual = false
+        this.tipmonthly = "Calculates your monthly tax"
+        this.tipannual = "Calculates your annual tax with Medical tax rebates if applicable"
     }
     public calcTaxes(formValues: any) {
         this.yourincome = formValues.income
